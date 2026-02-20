@@ -1,0 +1,23 @@
+name: Cache Dependencies
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache pip dependencies
+        id: cache-pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: cache-787072e
+
+      - name: prime-cache-787072e
+        run: echo "Cache hit ${{ steps.cache-pip.outputs.cache-hit }}"
+
+      - name: 23f2004090@ds.study.iitm.ac.in
+        run: echo "Hello"
+
+      - name: Install dependencies
+        run: pip install fastapi requests pandas
